@@ -1,0 +1,55 @@
+
+  <mat-tab-group  mat-align-tabs="start" >
+    <mat-tab  *ngIf="adminList"> 
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">security</mat-icon>
+        Leaders That I Authorize
+      </ng-template>
+      <div *ngFor="let team of adminList">
+        <app-team [userCanEdit]="userCanEdit" [team]="team" [expanded]="isFirstInList(team,adminList)"></app-team>
+      </div>
+    </mat-tab>
+    
+    <mat-tab *ngIf="leaderList"> 
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">explore</mat-icon>
+        Teams That I Lead
+      </ng-template> 
+      <div *ngFor="let team of leaderList">
+        <app-team [userCanEdit]="userCanEdit" [team]="team" [expanded]="isFirstInList(team,leaderList)"></app-team>
+      </div>
+      <app-create-team *ngIf="userCanEdit"></app-create-team>
+
+    </mat-tab>
+    <mat-tab *ngIf="memberList"> 
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">person_outline</mat-icon>
+        Teams That I Belong To
+      </ng-template>
+      <div *ngFor="let team of memberList">
+        <app-team [userCanEdit]="false" [team]="team" [expanded]="isFirstInList(team,memberList)"></app-team>
+      </div>
+    </mat-tab>
+
+
+  <mat-tab *ngIf="godmodeTeamList"> 
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">group_work</mat-icon>
+      All Teams (God mode)
+    </ng-template>
+    <div *ngFor="let team of godmodeTeamList">
+      <app-team [userCanEdit]="true" [team]="team" [expanded]="isFirstInList(team,godmodeTeamList)"></app-team>
+    </div>
+  </mat-tab>
+
+  <mat-tab *ngIf="godmodeUsersList"> 
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">group_work</mat-icon>
+      All Registered Users (God mode)
+    </ng-template>
+    <app-users [list]="godmodeUsersList" ></app-users>
+  </mat-tab>
+
+</mat-tab-group>
+  
+

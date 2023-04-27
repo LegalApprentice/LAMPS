@@ -1,0 +1,29 @@
+<div class="container">
+    <button class="btn btn-primary" (click)="doCreateTeamMember()" *ngIf="!showForm" >Invite a New Team Member</button>
+    <div rowHeight="140px" *ngIf="showForm">
+            <form [formGroup]="teamCreateMemberForm"  style="width:95%">
+                <div class="form-group row">
+                    <label for="member" class="col-auto col-form-label">Email:</label>
+                    <div class="col-sm-4 ">
+                        <input type="email" id="member"  formControlName="member" class="form-control" placeholder="What is the members email?"
+                                    [ngClass]="{ 'is-invalid': submitted && f.member.errors }" />
+                        <div *ngIf="submitted && f.member.errors" class="invalid-feedback">
+                            <div *ngIf="f.member.errors.required">Members's Email is required</div>
+                        </div>
+                    </div>
+                    <div class="col-auto " >
+                        <button (click)="doCreate()" class="btn btn-info">Invite</button>
+                    </div>
+                    <div class="col-auto " >
+                        <button (click)="doCancel()" class="btn btn-danger ">Cancel</button>
+                    </div>
+                    <div class="col-auto " >
+                        <h4>{{team.pattern}}</h4>
+                    </div>
+                </div>
+
+            </form>
+          </div>
+    <br/>
+</div>
+

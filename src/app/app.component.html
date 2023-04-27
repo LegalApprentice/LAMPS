@@ -1,0 +1,103 @@
+<nav class="navbar navbar-expand-md sticky-top"  [ngClass]="navbarClass()" >
+
+  <h4 class="btn navbar-brand " (click)="doShowPlugins()" >{{title}}&nbsp;{{version}}&nbsp;<sub><small>{{tagline}}</small></sub></h4>
+
+   <h4 *ngIf="currentUser" class="navbar-brand">{{currentUser.displayName()}}  </h4>
+ <!-- <h4 *ngIf="currentTeam" class="navbar-brand"  >{{currentTeam.teamName}}</h4>
+  <h4 *ngIf="currentTeam" class="navbar-brand"  >{{currentTeam.workspace}}</h4> -->
+  <h4 class="navbar-brand">|</h4>
+
+  <div class="navbar-collapse collapse w-120 order-1 order-md-0 dual-collapse2">
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item"  *ngFor="let item of menuItems" tooltip="{{item.toolTip}}">
+        <a class="nav nav-link " [routerLink]="[item.routerLink]">{{item.label}}<strong *ngIf="item.isDivider" style="padding-left:10px;">|</strong></a>
+      </li>
+
+      <li *ngIf="filename" class="nav-item " style="margin-left:5px"  tooltip="rename open document">
+        <span class="nav nav-link " style="width:350px;cursor: pointer;"  (click)="doToggleFilenameOpen()"><em>{{filename}}</em></span>
+      </li>
+
+    </ul>
+  </div>
+
+
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2 justify-content-end">
+    <ul class="navbar-nav ml-auto">
+      <!-- <li class="nav-item"  >
+        <button  style="margin-top:5px;" class="btn btn-success btn-sm" (click)="doFind()">
+          Find
+        </button>
+        &nbsp;
+        &nbsp;
+      </li> -->
+
+      <li class="nav-item"  *ngIf="isMarker || isSearch || isPad">
+        <button *ngIf="canPing()" style="margin-top:5px;" class="btn btn-success btn-sm" (click)="doPing()">
+          Ping
+        </button>
+        &nbsp;
+        &nbsp;
+      </li>
+
+      <li class="nav-item" >
+        <input type="file" style="display: none" (change)="onFileOpen($event)" #hiddenfileinput />
+        <button  style="margin-top:5px;" tooltip="{{labelForOpenButton()}}" class="btn btn-info btn-sm" (click)="hiddenfileinput.click()">
+          Open
+        </button>
+        &nbsp;
+      </li>
+
+      <li class="nav-item" >
+        <button style="margin-top:5px;" tooltip="{{labelForSaveButton()}}" class="btn btn-info btn-sm" (click)="onFileSave($event)">
+          Save
+        </button>
+        &nbsp;
+      </li>
+
+      <li class="nav-item" *ngIf="isMarker || isSearch">
+        <button *ngIf="canLaunch()" style="margin-top:5px;" tooltip="Open Legal Pad to collect notes on case" class="btn btn-warning btn-sm" (click)="onLaunchLegalPad($event)">
+          Pad
+        </button>
+        &nbsp;
+      </li>
+
+      <li class="nav-item" *ngIf="isSearch || isPad">
+        <button *ngIf="canLaunch()" style="margin-top:5px;" tooltip="Open Legal Pad to collect notes on case" class="btn btn-primary btn-sm" (click)="onLaunchLegalMarker($event)">
+          Marker
+        </button>
+        &nbsp;
+      </li>
+
+      <li class="nav-item" *ngIf="isMarker || isPad">
+        <button *ngIf="canLaunch()" style="margin-top:5px;" tooltip="Open Legal Search to collect notes on case" class="btn btn-primary btn-sm" (click)="onLaunchLegalSearch($event)">
+          Search
+        </button>
+        &nbsp;
+      </li>
+
+      <li class="nav-item">
+        <button *ngIf="isDirty()" style="margin-top:5px;" class="btn btn-danger btn-sm" (click)="applyAutoSave($event)">Auto
+          Save ({{autoSaveCountdown()}})</button>
+        &nbsp;
+      </li>
+
+
+      <ng-container >
+        <li *ngIf="!currentUser" class="nav-item " style="padding-right:25px;">
+          <a class="nav nav-link mb-0 btn" [routerLink]="['/login']">Login</a>
+        </li>
+        <li *ngIf="currentUser" class="nav-item" style="padding-right:25px;">
+          <a class="nav nav-link mb-0 btn" (click)="doLogout()">Logout</a>
+        </li>
+      </ng-container>
+
+
+    </ul>
+  </div>
+</nav>
+
+
+<router-outlet *ngIf="hasConfig" ></router-outlet>
+
+<app-filename class="filename" *ngIf="isFilenameOpen" [filenameInfo]="LaFilename()" ></app-filename>

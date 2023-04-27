@@ -1,0 +1,11 @@
+<p>
+    <app-sentence
+        *ngFor="let item of getFilteredSentences()"
+        [showImmutable]="showImmutable"
+        [userCanAddNotesAndTags]="userCanAddNotesAndTags"
+        [userCanEdit]="userCanEdit"
+        [sentence]="item"
+        [renderLikePage]="true"
+    >
+    </app-sentence>
+</p>

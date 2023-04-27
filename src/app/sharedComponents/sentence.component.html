@@ -1,0 +1,111 @@
+
+<p *ngIf="!renderLikePage" >
+    <app-group-badge [sentence]="sentence"></app-group-badge>
+    <app-bookmark [sentence]="sentence"></app-bookmark>
+
+    
+    <button (click)="doToggleContext()">{{ sentenceTag() }}</button>
+    <app-sentence-badge *ngIf="canSelectSentence()" [sentence]="sentence"></app-sentence-badge>
+
+    
+    <button *ngIf="canShowProbability()" (click)="doOpenClassification()" [class]="RhetColorClass()" class="badge text-dark" style="margin-left: 10px; margin-right: 5px">
+        {{ sentence.readProbability() }}
+    </button>
+    
+    <svg *ngIf="canShowPolarity()" height="20" width="20">
+        <circle cx="12" cy="10" r="6" stroke="black" stroke-width="1" [attr.fill]="sentence.polarityColor()" [style.fill]="sentence.polarityColor()" />
+    </svg>
+    
+    
+    
+    <span id="{{sentence.anchorTag()}}" (mouseover)="setCurrentAnchorTag(sentence.anchorTag())" [class]="ColorClass()" [innerHTML]="innerTextMarkup()"></span>
+    <app-footnotelink [sentence]="sentence"></app-footnotelink>
+    
+    <mat-icon *ngIf="canDoQuickSplitText()" (click)="doOpenTextEditor(EditOp.Tokenize)" class="btn reader-btn">content_cut</mat-icon>
+    <mat-icon *ngIf="canDoSplitText()" (click)="doOpenTextEditor(EditOp.Split)" class="btn reader-btn">space_bar</mat-icon>
+    <mat-icon *ngIf="canDoDeleteText()" (click)="doOpenTextEditor(EditOp.Delete)" class="btn reader-btn">delete_forever</mat-icon>
+    <mat-icon *ngIf="canDoEditText()" (click)="doOpenTextEditor(EditOp.Edit)" class="btn reader-btn">edit_attributes</mat-icon>
+    <mat-icon *ngIf="canDoEditFootnote()" (click)="doOpenTextEditor(EditOp.Footnote)" class="btn reader-btn">insert_comment</mat-icon>
+
+    <app-section-badge *ngIf="canEditSection()" [sentence]="sentence"></app-section-badge>
+    <ng-container *ngIf="canShowImmutable()">
+        <sub style="padding-left: 10px">{{ sentence.showImmutable() }}</sub>
+        <mat-icon (click)="doToggleMarkedForDelete()" *ngIf="isMarkedForDelete()" class="btn" style="padding-top: 0px; margin-right: 10px">restore_from_trash</mat-icon>
+        <mat-icon (click)="doDelete()" class="btn" style="padding-top: 0px; margin-right: 10px">delete</mat-icon>
+    </ng-container>
+
+    <mat-icon *ngIf="!hasNotes() && canAddNotes()" (click)="doAddNote()" class="btn" style="padding-top: 0px; margin-right: 10px">note_add</mat-icon>
+    <mat-icon *ngIf="hasNotes()" (click)="doOpenNote()" class="btn" style="padding-top: 0px; margin-right: 10px" tooltip="{{ sentence.notes }}">feedback</mat-icon>
+
+    <mat-icon *ngIf="!hasTags() && canAddTags()" (click)="doAddTags()" class="btn" style="padding-top: 0px; margin-right: 10px">local_offer</mat-icon>
+    <mat-icon *ngIf="hasTags()" (click)="doOpenTags()" class="btn" style="padding-top: 0px; margin-right: 10px" tooltip="{{ tagToolTips() }}">more</mat-icon>
+
+
+    <app-decision-list-badge *ngIf="canEdit()" [sentence]="sentence"></app-decision-list-badge>
+
+    <app-phrasecontext *ngIf="showContext" [sentence]="sentence"></app-phrasecontext>
+    
+</p>
+
+<ng-container *ngIf="renderLikePage"  >
+
+    <app-bookmark *ngIf="sentence.isBookmark" [sentence]="sentence"></app-bookmark>
+
+    <app-sentence-badge *ngIf="canSelectSentence()" [sentence]="sentence"></app-sentence-badge>
+
+    
+    <button *ngIf="canShowProbability()" (click)="doOpenClassification()" [class]="RhetColorClass()" class="badge text-dark" style="margin-left: 10px; margin-right: 5px">
+        {{ sentence.readProbability() }}
+    </button>
+
+    <mat-icon *ngIf="canDoJoinText()" (click)="doOpenTextEditor(EditOp.Join)" class="btn reader-btn">swap_horiz</mat-icon>
+    
+    <svg *ngIf="canShowPolarity()" height="20" width="20">
+        <circle cx="12" cy="10" r="6" stroke="black" stroke-width="1" [attr.fill]="sentence.polarityColor()" [style.fill]="sentence.polarityColor()" />
+    </svg>
+    
+    
+    <mat-icon *ngIf="canDoMoveSentenceUp()" (click)="doMoveSentenceUp()" class="btn reader-btn">vertical_align_top</mat-icon>
+    <mat-icon *ngIf="canDoMoveSentenceForward()" (click)="doMoveSentenceForward()" class="btn reader-btn">skip_previous</mat-icon>
+    
+    
+    
+    <span id="{{sentence.anchorTag()}}" (mouseover)="setCurrentAnchorTag(sentence.anchorTag())" [class]="ColorClass()" [innerHTML]="innerTextMarkup()"></span>
+    <app-footnotelink [sentence]="sentence"></app-footnotelink>
+
+    <mat-icon *ngIf="canDoQuickSplitText()" (click)="doOpenTextEditor(EditOp.Tokenize)" class="btn reader-btn">content_cut</mat-icon>
+    <mat-icon *ngIf="canDoSplitText()" (click)="doOpenTextEditor(EditOp.Split)" class="btn reader-btn">space_bar</mat-icon>
+    <mat-icon *ngIf="canDoDeleteText()" (click)="doOpenTextEditor(EditOp.Delete)" class="btn reader-btn">delete_forever</mat-icon>
+    <mat-icon *ngIf="canDoEditText()" (click)="doOpenTextEditor(EditOp.Edit)" class="btn reader-btn">edit_attributes</mat-icon>
+    <mat-icon *ngIf="canDoEditFootnote()" (click)="doOpenTextEditor(EditOp.Footnote)" class="btn reader-btn">insert_comment</mat-icon>
+
+    <mat-icon *ngIf="canDoMoveSentenceBackward()" (click)="doMoveSentenceBackward()" class="btn reader-btn">skip_next</mat-icon>
+    <mat-icon *ngIf="canDoSplitParagraph()" (click)="doSplitParagraph()" class="btn reader-btn">broken_image</mat-icon>
+    <mat-icon *ngIf="canDoMoveSentenceDown()" (click)="doMoveSentenceDown()" class="btn reader-btn">vertical_align_bottom</mat-icon>
+    <mat-icon *ngIf="canDoInsertParagraph()" (click)="doOpenTextEditor(EditOp.InsertPara)" class="btn reader-btn">format_textdirection_l_to_r</mat-icon>
+    <mat-icon *ngIf="canDoInsertSentence()" (click)="doOpenTextEditor(EditOp.InsertSent)" class="btn reader-btn">linear_scale</mat-icon>
+
+    <app-section-badge *ngIf="canEditSection()" [sentence]="sentence"></app-section-badge>
+    <ng-container *ngIf="canShowImmutable()">
+        <sub style="padding-left: 10px">{{ sentence.showImmutable() }}</sub>
+        <mat-icon (click)="doToggleMarkedForDelete()" *ngIf="isMarkedForDelete()" class="btn" style="padding-top: 0px; margin-right: 10px">restore_from_trash</mat-icon>
+        <mat-icon (click)="doDelete()" class="btn" style="padding-top: 0px; margin-right: 10px">delete</mat-icon>
+    </ng-container>
+
+    <mat-icon *ngIf="!hasNotes() && canAddNotes()" (click)="doAddNote()" class="btn" style="padding-top: 0px; margin-right: 10px">note_add</mat-icon>
+    <mat-icon *ngIf="hasNotes()" (click)="doOpenNote()" class="btn" style="padding-top: 0px; margin-right: 10px" tooltip="{{ sentence.notes }}">feedback</mat-icon>
+
+    <mat-icon *ngIf="!hasTags() && canAddTags()" (click)="doAddTags()" class="btn" style="padding-top: 0px; margin-right: 10px">local_offer</mat-icon>
+    <mat-icon *ngIf="hasTags()" (click)="doOpenTags()" class="btn" style="padding-top: 0px; margin-right: 10px" tooltip="{{ tagToolTips() }}">more</mat-icon>
+
+
+    <app-decision-list-badge *ngIf="canEdit()" [sentence]="sentence"></app-decision-list-badge>
+</ng-container>
+
+
+<app-label *ngIf="isReadyToLabel()" [sentence]="sentence"></app-label>
+<app-sentence-edit *ngIf="isReadyToEditText()" [context]="sentence" [editMode]="editMode"></app-sentence-edit>
+
+
+<app-note *ngIf="showNotes" [context]="sentence"></app-note>
+<app-tags *ngIf="showTags" [context]="sentence"></app-tags>

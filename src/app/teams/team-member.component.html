@@ -1,0 +1,36 @@
+<div class="container">
+  <div rowHeight="70px">
+        <form [formGroup]="teamMemberForm"  style="width:95%" >
+            <div class="form-row ">
+
+              <div class="col-sm-4 ">
+                <input  type="email"  formControlName="member" class="form-control" placeholder="Team Member email">
+              </div>
+              <div class="col-auto" *ngIf="isLeader()">
+                <h6 >*leader</h6>
+              </div>
+              <div class="col-auto" *ngIf="isNotLeader()">
+                <button (click)="doToggleInvite()" [ngClass]="invitedClass()" class="btn">{{invitedText()}}</button>
+              </div>
+              <div class="col-auto " *ngIf="isNotLeader()">
+                <button (click)="doToggleActive()" [ngClass]="activeClass()" class="btn">{{activeText()}}</button>
+              </div>
+              <div class="col-auto " *ngIf="isNotLeader()">
+                <button (click)="doUpdateMember()" class="btn btn-primary">Update</button>
+              </div>
+              <div class="col-auto " >
+                  <button (click)="doDeleteMember()" class="btn btn-danger">{{deleteText()}}</button>
+              </div>
+              <div class="col-auto " >
+                  <button (click)="doConfirmDelete()" *ngIf="confirmDelete" class="btn btn-success">Confirm</button>
+              </div>
+              <div class="col-auto " >
+                  <h6>{{member.pattern}}</h6>
+              </div>
+              </div>
+        </form>
+      </div>
+  <br/>
+</div>
+
+

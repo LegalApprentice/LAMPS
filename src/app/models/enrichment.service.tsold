@@ -1,0 +1,71 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Toast, IPayloadWrapper } from '../shared';
+import { environment } from '../../environments/environment';
+
+import { Observable, of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EnrichmentService {
+
+  get API_URL(): string {
+    return environment.predictURL;
+  }
+  
+  get defaultThreshold(): number {
+    return 80.0;
+  }
+
+  constructor(private http: HttpClient) { }
+
+
+  sampleData(): any {
+    return environment.defaultPredictions;
+  }
+
+
+  predictSentenceDetails(text: string, toast = true): Observable<any> {
+    const url = `${this.API_URL}/Classify`;
+    const data = { text }
+    return this.http.post<IPayloadWrapper<any>>(url, data).pipe(
+      map(res => {
+        const item: any = res.payload[0];
+        if (toast) {
+          Toast.success('predicted', item.classification);
+        }
+        return item;
+      }),
+      catchError(error => {
+        const msg = JSON.stringify(error, undefined, 3);
+        Toast.error(text, msg);
+        return of<any>(environment.defaultPredictions);
+      })
+    );
+  }
+
+  predictSentenceCompleteDetails(text: string, toast = true): Observable<any> {
+    const url = `${this.API_URL}/PredictAll`;
+    const data = { text }
+    return this.http.post<IPayloadWrapper<any>>(url, data).pipe(
+      map(res => {
+        const item: any = res.payload[0];
+        if (toast) {
+          Toast.success('predicted', item.classification);
+        }
+        return item;
+      }),
+      catchError(error => {
+        const msg = JSON.stringify(error, undefined, 3);
+        Toast.error(text, msg);
+        return of<any>(environment.defaultPredictions);
+      })
+    );
+  }
+
+
+}

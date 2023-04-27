@@ -1,0 +1,14 @@
+<div class="sticky-button-bar">
+    <div>
+        <div class="navbar navbar-expand-md sticky-button-bar">
+            <div class="container menu-container" style="max-width: 90%" >
+                <mat-icon  (click)="doToggleNotes()" class="btn bg-light" style="padding-top: 0px; padding-left: 10px">note_add</mat-icon>
+                <mat-icon  (click)="doToggleTags()" class="btn bg-light" style="padding-top: 0px; padding-left: 10px">local_offer</mat-icon>
+         </div>
+    </div>
+
+    <div class="container text-container" *ngIf="isModelOpen">
+        <div *ngFor="let item of getSortedParagraphs()" class="border-success  mb-3">
+           <app-phrasecontext [context] = "item"></app-phrasecontext>
+    </div>
+</div>

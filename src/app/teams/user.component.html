@@ -1,0 +1,38 @@
+<div class="container" *ngIf="user">
+  <div class="row">
+    <div class="col-2">
+      <button (click)="doRemoveMember()" class="btn btn-primary">
+        Bench User
+      </button>
+    </div>
+
+    <div class="col-1">
+      <button (click)="doDeleteMember()" class="btn btn-danger">
+        {{ deleteText() }}
+      </button>
+    </div>
+    <div class="col-1">
+      <button
+        (click)="doConfirmDelete()"
+        *ngIf="confirmDelete"
+        class="btn btn-success"
+      >
+        Confirm
+      </button>
+    </div>
+
+    <div class="col-2" *ngIf="isAdmin()">
+      <span>*</span>
+      <span>{{ user.firstName }}</span>
+    </div>
+    <div class="col-1">
+      <span>{{ user.lastName }}</span>
+    </div>
+    <div class="col-1">
+      <span>{{ user.username }}</span>
+    </div>
+    <div class="col-3">
+      <span>{{ user.email }}</span>
+    </div>
+  </div>
+</div>

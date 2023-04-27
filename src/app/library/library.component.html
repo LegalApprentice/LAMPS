@@ -1,0 +1,20 @@
+<mat-tab-group *ngIf="teams">
+  <mat-tab *ngFor="let team of teams">
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">explore</mat-icon>
+      <span (click)="doSelectDefaultTeam(team)"
+        >{{ team.teamName }} : {{ team.workspace }}</span
+      >
+    </ng-template>
+
+    <app-workspace [team]="team"></app-workspace>
+  </mat-tab>
+
+  <mat-tab *ngIf="listAllFiles">
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">group_work</mat-icon>
+      All Teams (God mode)
+    </ng-template>
+    <app-directory-grid [listFiles]="listAllFiles"></app-directory-grid>
+  </mat-tab>
+</mat-tab-group>

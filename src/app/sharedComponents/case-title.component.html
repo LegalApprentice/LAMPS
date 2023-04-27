@@ -1,0 +1,81 @@
+<div class="container" style="max-width: 100%">
+    <mat-accordion>
+        <mat-expansion-panel [expanded]="isPanelOpen()" (opened)="doOpenPanel($event)" (closed)="doClosePanel($event)">
+            <mat-expansion-panel-header>
+                <mat-panel-title> File: {{ caseInfo.getFilename() }} &nbsp;&nbsp;&nbsp; {{ caseInfo.lastChange }} </mat-panel-title>
+                <mat-panel-description>
+                    <span>{{ caseInfo.owner }}</span>
+                    &nbsp;&nbsp;&nbsp;
+                    <a target="blank" href="{{caseInfo.source}}">{{ caseInfo.source }}</a>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div rowHeight="300px">
+                <form [formGroup]="caseInfoForm" (ngSubmit)="onSubmit()" style="width: 99%">
+                    <div class="form-group row">
+                        <label for="title" class="col-sm-1 col-form-label">Title:</label>
+                        <div class="col-sm-11">
+                            <input type="text" formControlName="title" class="form-control" id="title" placeholder="there is no title" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="description" class="col-sm-1 col-form-label">Description:</label>
+                        <div class="col-sm-11">
+                            <input type="text" formControlName="description" class="form-control" id="description" placeholder="there is no description" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="source" class="col-sm-1 col-form-label">Source:</label>
+                        <div class="col-sm-11">
+                            <input type="text" formControlName="source" class="form-control" id="source" placeholder="there is no source url" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="keywords" class="col-sm-1 col-form-label">Keywords:</label>
+                        <div class="col-sm-11">
+                            <input type="text" formControlName="keywords" class="form-control" id="keywords" placeholder="there are no keywords" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="notes" class="col-sm-1 col-form-label">Notes:</label>
+                        <div class="col-sm-11">
+                            <input type="text" formControlName="notes" class="form-control" id="notes" placeholder="there are no notes" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-1">
+                            <button class="btn btn-primary">Update</button>
+                        </div>
+                        <!-- <label for="caseId" class="col-sm-1 col-form-label">Case:</label> -->
+                        <div class="col-sm-3">
+                            <input type="text"  formControlName="name" id="caseId" class="form-control" placeholder="name" />
+                        </div>
+
+                        <div class="col-sm-4">
+                            <input type="text" readonly formControlName="lastChange" class="form-control" placeholder="lastChange" />
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="email" formControlName="owner" class="form-control" placeholder="owner" />
+                        </div>
+                    </div>
+                    <!-- <div class="form-row">
+                    <div class="col-2">
+                      <input type="text" formControlName="nextFileName" class="form-control" placeholder="nextFileName">
+                    </div>
+                    <div class="col-2">
+                      <input type="text" formControlName="prevFileName" class="form-control" placeholder="prevFileName">
+                    </div>
+                    <div class="col-2">
+                      <input type="text" formControlName="lastChange" class="form-control" placeholder="lastChange">
+                      <input type="text" formControlName="version" class="form-control" placeholder="version">
+                    </div>
+                    <div class="col-2">
+                      <input type="text" formControlName="folder" class="form-control" placeholder="folder">
+                    </div>
+                  </div> -->
+                </form>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <br />
+</div>

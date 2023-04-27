@@ -1,0 +1,18 @@
+<div class="sticky-button-bar">
+    <div class="sticky-button-bar">
+        <div class="navbar navbar-expand-md sticky-button-bar">
+            <div class="container menu-container" style="max-width: 90%">
+                <button (click)="applyFilter($event, item)" *ngFor="let item of getGroups()">{{ item.title }}&nbsp; &nbsp;</button>
+                <mat-icon *ngIf="isModelOpen" (click)="doToggleNotes()" class="btn bg-light" style="padding-top: 0px; padding-left: 10px">note_add</mat-icon>
+                <mat-icon *ngIf="isModelOpen" (click)="doToggleTags()" class="btn bg-light" style="padding-top: 0px; padding-left: 10px">local_offer</mat-icon>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-container">
+        <app-case-title *ngIf="isModelOpen" [caseInfo]="getModelCoreInfo()"></app-case-title>
+        <br />
+
+        <app-group-details *ngIf="currentGroup" [group]="currentGroup"></app-group-details>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<!-- <pre>{{searchResults | json}}</pre> -->
+<div  *ngIf="searchResults?.length > 0">
+  <ag-grid-angular
+    class="ag-theme-balham"
+    style="width: 100%; height: 800px;"
+    [rowData]="searchResults"
+    [columnDefs]="columnDefs"
+    [getRowHeight]="getRowHeight"
+    [rowSelection]="rowSelection"
+    [defaultColDef]="defaultColumnDefs"
+    (gridReady)="onGridReady($event)"
+    (rowClicked)="onRowClick($event)"
+  ></ag-grid-angular>
+</div>
+

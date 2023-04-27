@@ -1,0 +1,11 @@
+<p>
+    <span>{{refType()}} <strong>{{refID()}}</strong></span>
+    <mat-icon *ngIf="!hasNotes() && canAddNotes()" (click)="doAddNote($event)" class="btn" style="padding-top: 0px; margin-right: 10px">note_add</mat-icon>
+    <mat-icon *ngIf="hasNotes()" (click)="doOpenNote($event)" class="btn" style="padding-top: 0px; margin-right: 10px" tooltip="{{ reference.notes }}">feedback</mat-icon>
+
+    <mat-icon *ngIf="!hasTags() && canAddTags()" (click)="doAddTags($event)" class="btn" style="padding-top: 0px; margin-right: 10px">local_offer</mat-icon>
+    <mat-icon *ngIf="hasTags()" (click)="doOpenTags($event)" class="btn" style="padding-top: 0px; margin-right: 10px" tooltip="{{ tagToolTips() }}">more</mat-icon>
+    
+    <app-note *ngIf="showNotes" [context]="reference"></app-note>
+    <app-tags *ngIf="showTags" [context]="reference"></app-tags>
+</p>

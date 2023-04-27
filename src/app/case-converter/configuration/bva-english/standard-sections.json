@@ -1,0 +1,26 @@
+{
+  "THE ISSUE": "issuesSection",
+  "THE ISSUES": "issuesSection",
+  "ISSUE": "issuesSection",
+  "ISSUES": "issuesSection",
+
+  "INTRODUCTION": "introductionSection",
+
+  "FINDING OF FACT": "findingsSection",
+  "FINDINGS OF FACT": "findingsSection",
+
+  "CONCLUSION OF LAW": "conclusionsLawSection",
+  "CONCLUSIONS OF LAW": "conclusionsLawSection",
+
+  "REASONS AND BASES FOR FINDING AND CONCLUSION": "reasonsBasesSection",
+  "REASONS AND BASES FOR FINDING AND CONCLUSIONS": "reasonsBasesSection",
+  "REASONS AND BASES FOR FINDINGS AND CONCLUSION": "reasonsBasesSection",
+  "REASONS AND BASES FOR FINDINGS AND CONCLUSIONS": "reasonsBasesSection",
+
+  "ORDER": "orderSection",
+  "REMAND": "remandSection",
+
+  "WITNESS AT HEARING ON APPEAL": "unknownSection",
+  "ATTORNEY FOR THE BOARD": "unknownSection",
+  "REPRESENTATION": "unknownSection"
+}

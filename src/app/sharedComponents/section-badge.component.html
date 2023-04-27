@@ -1,0 +1,40 @@
+<span *ngFor="let item of getSectionBadges()">
+    <button (click)="doChangeSection(item)" class="badge rounded-pill bg-info text-dark" style="background-color: darkkhaki; margin-left: 5px; margin-right: 10px">{{ item }}</button>
+</span>
+
+<div *ngIf="showEditor" class="row">
+    <div class="col-sm-12">
+        <div class="card border border-success">
+            <div class="card-header">
+                <button class="btn" tooltip="close note editor" (click)="doClose($event)">☒</button>
+                <span class="btn" (click)="doClose($event)" style="margin-right: 15px"> Select an existing section </span>
+                <span class="btn-group mr-10" role="group" style="max-width: 95%">
+                    <input style="max-width: 150px; padding-left: 20px" id="renametext" type="text" [(ngModel)]="renametext" (ngModelChange)="onRenameChange($event)" placeholder="" />
+                    <button tooltip="cancel these changes" (click)="doCancel()" type="button" style="padding-left: 50px" class="btn btn-badge">cancel<mat-icon>clear</mat-icon></button>
+                    <button tooltip="OK accept these changes" (click)="doApply()" type="button" style="padding-left: 50px" class="btn btn-badge">ok<mat-icon>check_circle</mat-icon></button>
+                    <button *ngIf="isDirty" (click)="doExecute()" style="margin-left: 150px;" class="btn btn-badge btn-success">Are you sure?</button>
+                </span>
+                <br/>
+                <span class="btn-group mr-10" role="group" style="max-width: 50%; margin-left: 260px">
+                    <input class="largerCheckbox" type="checkbox" (change)="onSectionBeginChanged($event)" [(ngModel)]="issection" />
+                    <span style="padding-left: 10px" class="btn"  (click)="doToggleSection()">This sentence should start the next section</span>
+                    </span>
+  
+            </div>
+
+            <div class="card-body">
+                <app-sentence *ngFor="let item of changedTargets()" [renderLikePage]="true" [sentence]="item" [userCanEdit]="true"></app-sentence>
+                <br />
+                <br />
+                <span class="btn-group mr-10" role="group" style="max-width: 50%">
+                    <span ><i>Select from existing section tags below:</i></span>
+                </span>
+                <br />
+                <br />
+                <span *ngFor="let item of getPossableSection()">
+                    <button (click)="doApplyItem(item)" class="badge rounded-pill bg-info text-dark" style="background-color: darkkhaki; margin-left: 5px; margin-right: 10px">{{ item }}</button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

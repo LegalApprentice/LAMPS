@@ -1,0 +1,30 @@
+<div class="sticky-button-bar">
+    <div class="navbar navbar-expand-md sticky-button-bar">
+        <div class="container menu-container" style="max-width: 90%">
+            <button style="min-width: 180px" class="btn btn-info" (click)="doExportNotes($event)">Export Notes to CSV</button>
+            <button style="min-width: 180px" class="btn btn-info" (click)="doExportTags($event)">Export Tags to CSV</button>
+            <button *ngIf="selectedItem" style="min-width: 180px" class="btn btn-success" (click)="doJumpToMarker($event)">Jump to Marker</button>
+            <button *ngIf="isPowerUser()" style="min-width: 180px" class="btn btn-success" (click)="doJumpToEditor($event)">Jump to Editor</button>
+            <button *ngIf="selectedItem" style="min-width: 180px" class="btn btn-info" (click)="doClose($event)">Close</button>
+        </div>
+    </div>
+
+    <div class="container text-container" >
+        <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="NOTES">
+                <div style="width: 100%">
+                    <app-selected-item [context]="selectedItem"></app-selected-item>
+                    <app-note *ngIf="hasNotes()" [context]="selectedItem"></app-note>
+                    <app-notepad></app-notepad>
+                </div>
+            </mat-tab>
+            <mat-tab label="TAGS">
+                <div style="width: 100%">
+                    <app-selected-item [context]="selectedItem"></app-selected-item>
+                    <app-tags *ngIf="hasTags()" [context]="selectedItem"></app-tags>
+                    <app-tagpad></app-tagpad>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

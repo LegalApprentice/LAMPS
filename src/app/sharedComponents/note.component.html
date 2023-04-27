@@ -1,0 +1,15 @@
+<div *ngIf="context" class="row">
+    <div class="col-sm-12">
+        <div class="card border border-success">
+            <div class="card-header">
+                <button class="btn" tooltip="close note editor" (click)="doClose($event)">☒</button>
+                <span class="btn" (click)="doClose($event)" style="margin-right: 35px"> Notes: {{noteKey()}}</span>
+                <button class="btn btn-primary" tooltip="close note editor" (click)="doRemove($event)">remove this note</button>
+           </div>
+
+            <div class="card-body">
+                <textarea rows="4" style="width: 90%" [(ngModel)]="noteSource().notes" (ngModelChange)="onChange($event)"></textarea>
+            </div>
+        </div>
+    </div>
+</div>

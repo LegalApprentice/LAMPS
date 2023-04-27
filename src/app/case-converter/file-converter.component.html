@@ -1,0 +1,36 @@
+<div class="convert-top">
+    <div class="container" style="max-width: 80%">
+        <div rowHeight="100px">
+            <form [formGroup]="convertForm">
+            <div class="form-group row">
+                <label for="caseno" class="offset-sm-1 col-sm-1 col-form-label">Case Number:</label>
+                <div class="col-sm-1">
+                    <input type="text" formControlName="caseno" class="form-control" id="caseno" placeholder="case no." />
+                </div>
+                <div class="offset-sm-1 col-sm-2">
+                    <input type="file" style="display: none" (change)="onFileOpen($event)" #hiddenfileinput />
+                    <button class="btn btn-info btn-sm" (click)="hiddenfileinput.click()">Open Text File to Convert</button>
+                </div>
+
+                <!-- <div class="col-sm-2">
+                    <button (click)="doCovertHTMLToText()" class="btn btn-info btn-sm">Convert Html To Text</button>
+                </div> -->
+                <div class="col-sm-2">
+                    <button (click)="doCovertTextToLSJson()" class="btn btn-info btn-sm">Convert Text to LSJson</button>
+                </div>
+
+                <div class="col-sm-2">
+                    <button (click)="doSave()" class="btn btn-success btn-sm">Save File as LSJSON...</button>
+                </div>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
+<br />
+<br />
+<div class="container convert-container">
+    <h3>Filename: {{ title }}</h3>
+    <pre>{{ convertedResult() }}</pre>
+    <pre>{{ inputText() }}</pre>
+</div>

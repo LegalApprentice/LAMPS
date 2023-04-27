@@ -1,0 +1,15 @@
+<button class="btn btn-info" style="margin:10px" (click)="doExport()">Export File List to csv</button>
+<button class="btn btn-success" style="margin:10px" (click)="onDownloadSelected()">Download Selected Files</button>
+
+<ag-grid-angular
+  class="ag-theme-balham"
+  style="width: 100%; height: 800px;"
+  [gridOptions]="gridOptions"
+  (gridReady)="onGridReady($event)"
+  (selectionChanged)="onSelectionChanged($event)"
+  [rowData]="rowData"
+  [rowSelection]="rowSelection"
+  [defaultColDef]="defaultColumnDefs"
+  [columnDefs]="columnDefs"
+>
+</ag-grid-angular>

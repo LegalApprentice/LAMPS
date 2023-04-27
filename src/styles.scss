@@ -1,0 +1,319 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~ag-grid-community/dist/styles/ag-grid.css';
+@import '~ag-grid-community/dist/styles/ag-theme-balham.css';
+@import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
+@import '../node_modules/bootstrap/dist/css/bootstrap.css';
+@import '../node_modules/ngx-toastr/toastr.css';
+
+
+//class="btn bg-light"
+//style="padding-top: 0px; padding-left: 10px"
+// https://gist.github.com/plembo/be95df835bf5fd48f8043645f979c037
+// .navbar-dark .navbar-nav .nav-link {
+//     color: white;
+//  }
+
+//  .navbar-light .navbar-nav .nav-link {
+//     color: black;
+//  }
+
+input.largerCheckbox {
+    margin-top: 10px;
+    width: 20px;
+    height: 20px;
+}
+
+.reader-on-btn {
+    padding: 0px;
+    margin: 10px;
+    color: green;
+}
+
+.reader-off-btn {
+  padding: 0px;
+  margin: 10px;
+}
+
+.reader-btn {
+  padding: 0px;
+  margin: 0px;
+}
+
+
+.tooltip-inner {
+    max-width: 80% !important;
+}
+
+.post-edit-style {
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    text-decoration-color:green;
+}
+
+.deleted-item-style {  
+    text-decoration-line: line-through;
+    text-decoration-style: double;
+    text-decoration-color: black;
+}
+
+.item-of-interest-style {  
+    text-decoration-line: str;
+    text-decoration-style: wavy;
+    text-decoration-color: red;
+}
+
+.legalMarkerPage {
+    background-color: antiquewhite;
+}
+
+.legalPadPage {
+    background-color: rgb(245, 238, 180);
+}
+
+.legalSearchPage {
+    background-color: rgb(240, 245, 247);
+}
+
+.grouping-tag {
+    background-color:lightseagreen; 
+    margin-left: 5px; 
+    margin-right: 10px;
+}
+
+.sticky-button-bar {
+    position: sticky;
+    display: block;
+    left: 0;
+    top: 84px;
+}
+
+.convert-top {
+    position: sticky;
+    display: block;
+    left: 0;
+    top: 12px;
+}
+
+.convert-container {
+    background-color: white;
+}
+
+.sticky-button-menu {
+    position: sticky;
+    display: block;
+    left: 0;
+    top: 132px;
+}
+
+.readonly-button-bar {
+    left: 0;
+    top: 184px;
+    width: 100%;
+}
+
+.menu-container {
+    background-color: white;
+}
+
+.text-container {
+    margin-top: 80px;
+    background-color: white;
+}
+
+.EvidenceSentence {
+    background-color: rgba(0, 0, 255, 0.3);
+}
+
+.EvidenceAndFactsSentence {
+    background-color: rgba(0, 0, 255, 0.3);
+}
+
+.FindingSentence {
+    background-color: rgba(255, 204, 0, 0.3);
+}
+
+.FindingLawSentence {
+    background-color: rgba(255, 204, 0, 0.3);
+}
+
+.LegalRuleSentence {
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+.CitationSentence {
+    background-color: rgba(255, 153, 51, 0.5);
+}
+
+.ReasoningSentence {
+    background-color: rgba(0, 215, 0, 0.3);
+}
+
+.ConclusionSentence {
+    background-color: rgba(255, 215, 0, 0.3);
+}
+
+.FactSentence {
+    background-color: rgba(0, 0, 255, 0.3);
+}
+
+.ProcedureSentence {
+    background-color: rgba(148, 0, 211, 0.3);
+}
+
+.NormativeProvisionSentence {
+    background-color: rgba(153, 153, 51, 0.6);
+}
+
+
+
+.ReasoningSentence {
+    background-color: rgba(0, 255, 0, 0.6);
+} 
+
+.VerificationSentence {
+    background-color: rgba(255, 102, 51, 0.9);
+}
+
+.FindingFactsSentence {
+    background-color: rgba(255, 102, 51, 0.9);
+}
+
+.ProceduralSentence {
+    background-color: rgba(204, 0, 153, 0.3);
+}
+
+.PlantiffClaimSentence {
+    background-color: rgba(255, 102, 51, 0.9);
+}
+
+.DefendantClaimSentence {
+    background-color: rgba(153, 153, 51, 0.6);
+}
+
+.OtherSentence {
+    background-color: rgba(192, 192, 192, 0.3);
+}
+
+.Evidence {
+    background-color: rgba(0, 0, 255, 0.3);
+}
+
+.Finding {
+    background-color: rgba(255, 204, 0, 0.3);
+}
+
+.LegalRule {
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+.Citation {
+    background-color: rgba(255, 153, 51, 0.5);
+}
+
+.Reasoning {
+    background-color: rgba(0, 204, 0, 0.3);
+}
+
+.positive {
+    background-color: rgba(0, 204, 0, 0.3);
+}
+
+.Positive {
+    background-color: rgba(0, 255, 0, 0.3);
+}
+
+.negative {
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+.Negative {
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+.undecided {
+    background-color: rgba(0, 0, 255, 0.3);
+}
+
+.neutral {
+    background-color: white;
+}
+
+.Neutral {
+    background-color: white;
+}
+
+.SC1 {
+    background-color: rgba(0, 81, 255, 0.3);
+}
+
+.SC1_1 {
+    background-color: rgba(0, 153, 255, 0.3);
+}
+
+.SC1_2 {
+    background-color: rgba(217, 0, 255, 0.3);
+}
+
+.SC1_3 {
+    background-color: rgba(255, 0, 179, 0.3);
+}
+
+html {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+/* Tooltip container */
+.footnotetooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* footnotetooltip text */
+.footnotetooltip .footnotetooltiptext {
+    visibility: hidden;
+    width: 320px;
+    height: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the footnotetooltip text */
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+
+    /* Fade in footnotetooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: larger;
+}
+
+/* footnotetooltip arrow */
+.footnotetooltip .footnotetooltiptext::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Show the footnotetooltip text when you mouse over the footnotetooltip container */
+.footnotetooltip:hover .footnotetooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

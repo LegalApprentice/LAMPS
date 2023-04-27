@@ -1,0 +1,4 @@
+<button (click)="doToggleBookmark()" type="button" class="btn" style="padding: 0;" >
+    <mat-icon *ngIf="isActive()">bookmark</mat-icon>
+    <mat-icon *ngIf="isNotActive()">bookmark_border</mat-icon>
+</button>

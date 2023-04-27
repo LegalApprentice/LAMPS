@@ -1,0 +1,29 @@
+<div *ngIf="hasNode()">
+  <svg height="40" width="45">
+    <circle cx="20" cy="20" r="10" stroke="black" stroke-width="1" [attr.fill]="polarityColor()"
+      [style.fill]="polarityColor()" />
+  </svg>
+
+<span  >
+  <span> <strong>{{node.memberLabel}}</strong> </span>
+  <span (click)="doOpen()"> {{node.label}}</span>
+  <span> <sup>{{node.ruleID}}</sup> </span>
+  <app-sentence-list-badge  [decision]="node"></app-sentence-list-badge>
+</span>
+
+
+  <ul *ngIf="isStipulated()">
+    <li [ngClass]="stipulationClass()" >STIPULATED: {{node.stipulation  }}</li>
+  </ul>
+
+  <span  *ngIf="isSelected() " >
+      <app-association  [decision]="node"></app-association>
+  </span >
+
+  <ul *ngIf="node.hasChildren()">
+    <li *ngFor="let item of node.subNodes">
+
+      <app-decision-item [node]="item"></app-decision-item>
+    </li>
+  </ul>
+</div>

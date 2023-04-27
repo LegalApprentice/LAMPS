@@ -1,0 +1,8 @@
+<div style="margin-left: 10px">
+    <div *ngFor="let item of getEnrichmentSet()">
+        <button (click)="queryPrediction(item)" type="button" style="margin-right: 10px; width:150px;" class="btn btn-outline-primary">{{ item.category }}</button>
+        <button  (click)="confirmPrediction(item, obj)" style="margin-right: 5px" [class]="obj.label" *ngFor="let obj of item.getPredictionList()">&nbsp;{{ obj.label | Short }}&nbsp;{{ obj.prediction }}%&nbsp;</button>
+    </div>
+
+</div>
+<br />

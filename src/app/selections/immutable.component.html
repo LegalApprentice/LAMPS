@@ -1,0 +1,36 @@
+<div class="sticky-button-bar">
+    <div class="sticky-button-bar">
+        <div class="navbar navbar-expand-md sticky-button-bar">
+            <div class="container menu-container">
+                <button style="min-width: 180px" class="btn btn-info" (click)="doClearAll($event)">Clear All Selections</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-container">
+        <app-case-title *ngIf="isModelOpen" [caseInfo]="getModelCoreInfo()"></app-case-title>
+
+        <mat-tab-group mat-align-tabs="center">
+            <mat-tab label="SENTENCES ({{ sentenceCount }})">
+                <div class="container">
+                    <div style="text-align: center; background-color: rgb(252, 255, 80)">
+                        <strong> SENTENCES ({{ sentenceCount }})</strong>
+                    </div>
+                    <br />
+                    <app-sentence *ngFor="let item of getSentences()" [sentence]="item" [renderLikePage]="false" [fullSendID]="true" showSelect="true"></app-sentence>
+                </div>
+            </mat-tab>
+            <mat-tab label="PARAGRAPHS  ({{ paragraphCount }})">
+                <div class="container">
+                    <div style="text-align: center; background-color: rgb(80, 156, 255)">
+                        <strong> PARAGRAPHS ({{ paragraphCount }})</strong>
+                    </div>
+                    <br />
+                    <div *ngFor="let item of getParagraphs()" class="border-success mb-3">
+                        <app-phrasecontext [context]="item"></app-phrasecontext>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="sticky-button-bar">
+    <div class="navbar navbar-expand-md sticky-button-bar">
+        <div class="container menu-container" style="max-width: 90%">
+            <button (click)="applyFilter($event, item)" [class]="item.name" *ngFor="let item of getSentenceLaStats">{{ item.markerLabel() }}&nbsp; &nbsp;</button>
+        </div>
+    </div>
+    <div class="navbar navbar-expand-md sticky-button-menu">
+        <div class="container menu-container" style="text-align: center; max-width: 90%; border-style: solid; border-width: medium">
+            <div class="btn-toolbar" role="toolbar" *ngIf="isModelOpen">
+
+                <div class="btn-group mr-10" role="group">
+                    <span style="padding-right:100px;">CASE EDITOR</span>
+                    <button tooltip="select a sentence" (click)="doToggleSentenceSelection()" type="button" class="btn btn-badge">select sentence <mat-icon>view_headline</mat-icon></button>
+                    
+                    <button tooltip="move sentence to previous paragraph" (click)="doToggleCanMoveSentenceUp()" type="button" class="btn btn-badge">
+                        move up <mat-icon>vertical_align_top</mat-icon>
+                    </button>
+                    
+                    <button tooltip="move sentence to next paragraph" (click)="doToggleCanMoveSentenceDown()" type="button" class="btn btn-badge">
+                        move down <mat-icon>vertical_align_bottom</mat-icon>
+                    </button>
+                    <button tooltip="split the paragraph here" (click)="doToggleCanSplitParagraph()" type="button" class="btn btn-badge">
+                        paragraph  <mat-icon>broken_image</mat-icon>
+                    </button>
+
+                    <button tooltip="join text to previous sentence" (click)="doToggleCanJoinText()" class="btn btn-badge">join text <mat-icon>swap_horiz</mat-icon></button>
+                    <button tooltip="split the text into two sentences" (click)="doToggleCanSplitText()" class="btn btn-badge">split text <mat-icon>space_bar</mat-icon></button>
+                    <button tooltip="Quick Split Sentence" (click)="doToggleCanQuickSplitText()" type="button" class="btn btn-badge">quick split<mat-icon>content_cut</mat-icon></button>
+                    <button tooltip="mark sentence as deleted" (click)="doToggleCanDeleteText()" class="btn btn-badge">delete text <mat-icon>delete_forever</mat-icon></button>
+                    <button tooltip="edit the sentence text" (click)="doToggleCanEditText()" class="btn btn-badge">edit text <mat-icon>edit_attributes</mat-icon></button>
+                    <button tooltip="show / assign sections" (click)="doToggleSectionEdit()" type="button" class="btn btn-badge">sections <mat-icon>view_agenda</mat-icon></button>
+                    <button tooltip="insert Paragraph" (click)="doToggleInsertParagraph()" type="button" class="btn btn-badge">insert paragraph <mat-icon>format_textdirection_l_to_r</mat-icon></button>
+                    <button tooltip="insert Sentence" (click)="doToggleInsertSentence()" type="button" class="btn btn-badge">insert sentence <mat-icon>linear_scale</mat-icon></button>
+                    <!-- <button tooltip="edit Footnote" (click)="doToggleEditFootnote()" type="button" class="btn btn-badge">footnote <mat-icon>insert_comment</mat-icon></button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container text-container">
+    <app-case-title *ngIf="isModelOpen" [caseInfo]="getModelCoreInfo()"></app-case-title>
+    <div *ngIf="HasNoSentenceFilter()">
+        <app-paragraph *ngFor="let item of getParagraphs()" [userCanAddNotesAndTags]="true" [hideFootnotes]="true" [userCanEdit]="userCanEdit" [paragraph]="item"> </app-paragraph>
+    </div>
+    <div *ngIf="!HasNoSentenceFilter()">
+        <app-sentence
+            *ngFor="let item of getFilteredSentences()"
+            [userCanAddNotesAndTags]="true"
+            [userCanEdit]="userCanEdit"
+            [filter]="filter"
+            [sentence]="item"
+            [renderLikePage]="false"
+        >
+        </app-sentence>
+    </div>
+</div>
+
+<br />
+<br />

@@ -1,0 +1,16 @@
+<div class="sticky-button-bar">
+    <div class="container text-container" *ngIf="isModelOpen">
+        <div *ngFor="let item of getSortedParagraphs()" class="card border border-success">
+            <div class="card-header">
+                <span style="margin-right: 20px">{{ item.label }}</span>
+                <span style="margin-right: 5px" [class]="stat.name" *ngFor="let stat of item.computeStats()">&nbsp;{{ stat.name | Short }}&nbsp;({{ stat.value }})&nbsp;</span>
+                <span style="margin-left: 20px">{{ item.score }}</span>
+                <mat-icon (click)="doExportParagraph(item)" class="btn bg-light" style="padding-top: 0px; padding-left: 0px">shop</mat-icon>
+
+            </div>
+            <div class="card-body">
+                <app-paragraph [paragraph]="item"> </app-paragraph>
+            </div>
+        </div>
+    </div>
+</div>

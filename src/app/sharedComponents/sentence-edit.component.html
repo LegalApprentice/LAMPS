@@ -1,0 +1,52 @@
+<div class="card border border-warning bg-light bg-gradient">
+    <div class="card-header">
+        <button class="btn" tooltip="close sentence text editor" (click)="doClose($event)">☒</button>
+        <span class="btn" (click)="doClose($event)" style="margin-right: 15px"> {{ mode() }} </span>
+        <span class="btn-group mr-10" role="group" style="max-width: 50%; margin-left: 100px">
+            <button *ngIf="isSplitMode()" tooltip="split from left" (click)="doFromLeft()" type="button" class="btn btn-badge"><mat-icon>space_bar</mat-icon></button>
+            <input *ngIf="isSplitMode()" style="max-width: 150px" id="splittext" type="text" [(ngModel)]="splittext" (ngModelChange)="onSplitChange($event)" placeholder="" />
+            <button *ngIf="isSplitMode()" tooltip="split from right" (click)="doFromRight()" type="button" class="btn btn-badge"><mat-icon>space_bar</mat-icon></button>
+
+            <input *ngIf="isJoinMode()" style="max-width: 150px" id="splittext" type="text" [(ngModel)]="splittext" (ngModelChange)="onJoinChange($event)" placeholder="" />
+            <input *ngIf="isDeleteMode()" style="max-width: 150px" id="splittext" type="text" [(ngModel)]="splittext" (ngModelChange)="onDeleteChange($event)" placeholder="" />
+            <button tooltip="cancel these changes" (click)="doCancel()" type="button" style="margin-left: 100px" class="btn btn-badge">cancel<mat-icon>clear</mat-icon></button>
+            <button tooltip="OK accept these changes" (click)="doApply()" type="button" style="margin-left: 100px" class="btn btn-badge">
+                ok<mat-icon>check_circle</mat-icon>
+            </button>
+            <button *ngIf="canExecute" (click)="doExecuteAndClose()" style="margin-left: 100px" class="btn btn-badge btn-success">Are you sure?</button>
+        </span>
+    </div>
+
+    <div class="card-body">
+        <app-sentence *ngFor="let item of changedTargets()" [showSelect]="true" [renderLikePage]="true" [sentence]="item" [userCanEdit]="true"></app-sentence>
+        <br />
+        <br />
+    </div>
+    <div class="card-body" *ngIf="!isTokenizeMode()">
+        <textarea *ngIf="canEditText()" rows="4" style="width: 100%" [(ngModel)]="sentence1.text"></textarea>
+        <table style="min-width: 100%" *ngIf="!canEditText()">
+            <tr>
+                <td *ngIf="isDeleteMode()">
+                    <button (click)="doToggleDelete(this.sentence1)" class="btn btn-badge">
+                        <mat-icon>{{ icon(this.sentence1) }}</mat-icon>
+                    </button>
+                </td>
+                <td style="width: 97%"><textarea readonly rows="2" style="width: 100%" [(ngModel)]="sentence1.text"></textarea></td>
+            </tr>
+            <tr>
+                <td *ngIf="isDeleteMode()">
+                    <button (click)="doToggleDelete(this.sentence2)" class="btn btn-badge">
+                        <mat-icon>{{ icon(this.sentence2) }}</mat-icon>
+                    </button>
+                </td>
+                <td style="width: 97%"><textarea readonly rows="2" style="width: 100%" [(ngModel)]="sentence2.text"></textarea></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="card-body" *ngIf="isTokenizeMode()">
+        <span *ngFor="let item of tokenList.tokens">
+            <button type="button" (click)="doSplitAtToken(item)" class="btn btn-badge" [class]="getButtonClass(item)">{{ item.text }} &nbsp;&#x2704;&nbsp;</button>
+        </span>
+    </div>
+</div>

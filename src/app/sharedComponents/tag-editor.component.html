@@ -1,0 +1,32 @@
+<div  class="card-header">
+    <div style="display: flex; justify-content: space-between;" >
+        <span  ><strong>{{title}}</strong></span>
+        <button (click)="doDeleteTag(userTag)" class="badge rounded-pill bg-info text-dark badge-xs badge-danger" >delete tag</button>   
+    </div>
+</div>
+
+<div class="card-body">
+    <div *ngFor="let item of tagElements()" >
+
+        <div *ngIf="item.dropDownList" class="btn-group" dropdown>
+            <button tooltip="{{ item.tagValue }}" id="dd-btn" dropdownToggle class="brn-sm btn-success" style="min-width: 80px">{{ item.tagName }}</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <input readonly class="pull-right" type="text" size="60" [(ngModel)]="item.tagValue" />
+    
+            <ul id="dd-btn" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="dd-btn">
+                <li *ngFor="let choice of item.dropDownList">
+                    <h4 class="dropdown-item" (click)="selectTagValue(item, choice)">
+                        {{ choice }}
+                    </h4>
+                </li>
+            </ul>
+        </div>
+
+        <div *ngIf="!item.dropDownList">
+            <button tooltip="{{ item.tagValue }}" (click)="readTag(item)" class="brn-sm btn-success" style="min-width: 80px">{{ item.tagName }}</button>
+            &nbsp;&nbsp;
+            <input class="pull-right" type="text" size="60" [(ngModel)]="item.tagValue" />
+        </div>
+    </div>
+
+</div>

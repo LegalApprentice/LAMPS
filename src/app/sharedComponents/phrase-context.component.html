@@ -1,0 +1,34 @@
+<div class="border-success mb-3" *ngIf="context">
+    <div class="card-header">
+        <p style="text-align: center; background-color: rgb(80, 156, 255); max-height: 40px">
+            <strong> PARAGRAPH &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ context?.label }} </strong>
+            <span style="margin-left: 20px">{{ context?.score }}</span>
+        </p>
+
+        <div [ngClass]="selectionClass()">
+            <span (click)="doToggleParagraphOfInterest()">{{ selectionFlag }}</span>
+            <button (click)="doToggleParagraphOfInterest()" class="badge rounded-pill bg-info text-dark" style="margin-left: 10px; margin-right: 5px">{{ context?.label }}</button>
+            <span style="margin-right: 5px" [class]="stat.name" *ngFor="let stat of context?.computeStats()">&nbsp;{{ stat.name | Short }}&nbsp;({{ stat.value }})&nbsp;</span>
+            <ng-container *ngIf="canShowImmutable()">
+                <sub style="padding-left: 10px">{{ context?.showImmutable() }}</sub>
+                <mat-icon (click)="doToggleMarkedForDelete()" *ngIf="isMarkedForDelete()" class="btn" style="padding-top: 0px; margin-right: 10px">restore_from_trash</mat-icon>
+                <mat-icon (click)="doDelete()" class="btn" style="padding-top: 0px; margin-right: 10px">delete</mat-icon>
+            </ng-container>
+
+            <button  class="badge rounded-pill bg-info text-dark" style="background-color: darkkhaki; margin-left: 5px; margin-right: 10px">{{ context?.label }}</button>
+
+            <mat-icon *ngIf="!hasNotes() && canAddNotes()" (click)="doAddNote()" class="btn" style="padding-top: 0px; margin-right: 10px">note_add</mat-icon>
+            <mat-icon *ngIf="hasNotes()" (click)="doOpenNote()" class="btn" style="padding-top: 0px; margin-right: 10px" tooltip="{{ context.notes }}">feedback</mat-icon>
+
+            <mat-icon *ngIf="!hasTags() && canAddTags()" (click)="doAddTags()" class="btn" style="padding-top: 0px; margin-right: 10px">local_offer</mat-icon>
+            <mat-icon *ngIf="hasTags()" (click)="doOpenTags()" class="btn" style="padding-top: 0px; margin-right: 10px" tooltip="{{ tagToolTips() }}">more</mat-icon>
+        </div>
+    </div>
+
+    <app-note *ngIf="showNotes" [context]="context"></app-note>
+    <app-tags *ngIf="showTags" [context]="context"></app-tags>
+
+    <div class="card-body">
+        <app-paragraph [showImmutable]="showImmutable" [paragraph]="context"> </app-paragraph>
+    </div>
+</div>

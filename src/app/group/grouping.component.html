@@ -1,0 +1,74 @@
+<div class="sticky-button-bar">
+    <div class="sticky-button-bar">
+        <div class="navbar navbar-expand-md sticky-button-bar">
+            <div class="container menu-container">
+                <button style="min-width: 180px" class="btn btn-info" (click)="doToggleShowCreateGroup()">Create Group</button>
+                <!-- <span style="padding-right: 20px" *ngFor="let item of localMenus()">
+                    <button style="min-width: 180px" class="btn btn-info" (click)="doAction($event, item)">{{ item.name }}</button>
+                </span> -->
+
+                <mat-icon (click)="doToggleNotes()" class="btn bg-light" style="padding-top: 0px; padding-left: 10px">note_add</mat-icon>
+                <mat-icon (click)="doToggleTags()" class="btn bg-light" style="padding-top: 0px; padding-left: 10px">local_offer</mat-icon>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-container" style="width: 100%" *ngIf="isModelOpen">
+        <app-create-group *ngIf="showCreateGroup"></app-create-group>
+        <div class="row">
+            <div class="offset-sm-1 col-5">
+                <div class="hitzone">
+                    <h2>Selected Items</h2>
+                    <div
+                        cdkDropList
+                        #ungroupedListSource="cdkDropList"
+                        [cdkDropListConnectedTo]="[groupedListSource]"
+                        [cdkDropListData]="UngroupedList()"
+                        class="dragable-list"
+                        (cdkDropListDropped)="onDropFromUngroup($event)"
+                    >
+                        <div cdkDrag class="drag-block" *ngFor="let item of UngroupedList()">
+                            <div>
+                                <svg *ngIf="item.canShowPolarity()" height="20" width="20">
+                                    <circle cx="12" cy="10" r="6" stroke="black" stroke-width="1" [attr.fill]="item.polarityColor()" [style.fill]="item.polarityColor()" />
+                                </svg>
+                                <button (click)="doToggleOfInterest(item)" class="badge rounded-pill bg-info text-dark" style="margin-left: 10px; margin-right: 5px">
+                                    {{ item.sentTag() }}
+                                </button>
+                                <button  class="badge rounded-pill bg-info text-dark grouping-tag"  >{{item.getGroupID()}}</button>
+                               <span [class]="item.rhetClass" >{{ item.text }}</span> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="hitzone">
+                    <h2>Grouped</h2>
+                    <div
+                        cdkDropList
+                        #groupedListSource="cdkDropList"
+                        [cdkDropListConnectedTo]="[ungroupedListSource]"
+                        [cdkDropListData]="GroupedList()"
+                        class="dragable-list"
+                        (cdkDropListDropped)="onDropFromGroup($event)"
+                    >
+                        <div cdkDrag class="drag-block"  *ngFor="let item of GroupedList()">
+                            <div *ngIf="item.isGroup()">
+                                <span>{{ item.text }} ({{item.memberCount()}})</span>
+                                <button  class="badge rounded-pill bg-info text-dark  grouping-tag"  >{{item.getGroupID()}}</button>
+                            </div>
+                            <div *ngIf="!item.isGroup()" style="padding-left: 30px" >
+                                <svg *ngIf="item.canShowPolarity()" height="20" width="20">
+                                    <circle cx="12" cy="10" r="6" stroke="black" stroke-width="1" [attr.fill]="item.polarityColor()" [style.fill]="item.polarityColor()" />
+                                </svg>
+                                <!-- <button  class="badge rounded-pill bg-info text-dark  grouping-tag"  >{{item.getGroupID()}}</button> -->
+                               <span [class]="item.rhetClass" >{{ item.shortText() }}</span> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

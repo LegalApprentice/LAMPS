@@ -1,0 +1,27 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <button (click)="doLoadItem(item)" mat-raised-button color="primary" style="width:350px">
+        {{ item.getFilename() }}
+      </button>
+      <h4 *ngIf="showWorkspace">&nbsp;{{ item.workspace }}</h4>
+    </mat-panel-title>
+
+    <mat-panel-description>
+      <h5>{{ item.title }}</h5>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <p>{{ item.description }}</p>
+  <p>{{ item.keywords }}</p>
+  <p>{{ item.notes }}</p>
+
+
+  <app-item-history [root]="item"></app-item-history>
+
+  <mat-action-row  >
+    <span class="col-9"><strong>{{ item.workspace }}</strong></span>
+    <span class="col-3">{{ item.owner }}</span>
+  </mat-action-row>
+</mat-expansion-panel>
+<br/>

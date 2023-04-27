@@ -1,0 +1,38 @@
+<div class="card ">
+  <div class="card-header">
+      <button class="btn btn-outline-default" style="margin-right:10px" (click)="doClose($event)">
+          Close
+        </button>
+          <!-- <button class="btn btn-outline-default positive" style="margin-right:10px" (click)="doStipulateTRUE()">
+            Stipulate: TRUE
+          </button>
+
+          <button class="btn btn-outline-default negative" style="margin-right:10px" (click)="doStipulateFALSE()">
+            Stipulate: FALSE
+          </button>
+
+          <button class="btn btn-outline-default undecided" style="margin-right:10px" (click)="doStipulateCLEAR()">
+            CLEAR Stipulate
+          </button> -->
+
+  </div>
+
+  <div class="card-body" style="height: 450px;overflow-y: scroll;overflow-x: hidden;">
+
+    <!-- <div *ngFor="let item of getItemsOfInterest()" >
+      <br/>
+      <button (click)="doAssociation(item)" class="badge rounded-pill bg-info text-dark"  [ngClass]="associationClass(item)" >{{item.sentTag()}}</button>
+
+      <svg *ngIf="item.isFindingSentence()" height="32" width="37">
+          <circle cx="16" cy="16" r="8" stroke="black" stroke-width="1" [attr.fill]="item.polarityColor()" [style.fill]="item.polarityColor()"/>
+      </svg>
+      <span [class]="item.getRhetClass()">{{item.text}}</span>
+
+      <app-decision-list-badge  [sentence]="item"></app-decision-list-badge>
+
+    </div> -->
+
+
+  </div>
+</div>
+

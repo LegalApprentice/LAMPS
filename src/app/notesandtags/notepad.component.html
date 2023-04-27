@@ -1,0 +1,17 @@
+<div style="text-align: center; background-color: rgb(252, 255, 80)">
+  <strong> NOTES ({{rowData.length}})</strong>
+</div>
+<div style="max-width: 90%" class="container" *ngIf="!isEmpty()">
+    <ag-grid-angular
+        class="ag-theme-balham"
+        style="width: 100%; height: 1100px"
+        [gridOptions]="gridOptions"
+        (gridReady)="onGridReady($event)"
+        (selectionChanged)="onSelectionChanged($event)"
+        [rowData]="rowData"
+        [rowSelection]="rowSelection"
+        [defaultColDef]="defaultColumnDefs"
+        [columnDefs]="columnDefs"
+    >
+    </ag-grid-angular>
+</div>

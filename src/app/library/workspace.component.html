@@ -1,0 +1,7 @@
+<div   *ngIf="list">
+    <div *ngFor="let item of list">
+        <app-directory-item [item]="item"></app-directory-item>
+      </div>
+      <br/>
+      <app-directory-grid [listFiles]="list"></app-directory-grid>
+</div>

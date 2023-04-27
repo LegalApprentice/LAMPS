@@ -1,0 +1,7 @@
+<span *ngIf="isFirstSentence()" [ngClass]="selectionClass()" >{{ selectionFlag }}</span>
+<button *ngIf="isFirstSentence()" (click)="doToggleParagraphOfInterest()" style="margin-left: 5px; margin-right: 5px" class="badge rounded-pill bg-info text-dark">{{ sentence.paraTag() }}</button>
+<span *ngFor="let item of getSentenceBadges()">
+    <button (click)="doToggleSentenceOfInterest()" class="badge rounded-pill bg-info text-dark" style="margin-left: 10px; margin-right: 5px">
+        {{ sentence.sentTag() }}
+    </button>
+</span>

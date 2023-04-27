@@ -1,0 +1,12 @@
+
+<div style="padding-bottom: 15px;">
+    <p>
+        <span><a class="btn btn-link" [href]="item.CaseLink()" target="_blank" >{{item.CaseNoLabel}}</a><strong>&nbsp;{{item.SearchScoreLabel}}:&nbsp;{{item.RhetClassLabel}}:</strong></span>
+
+        <!-- <span><i class="btn btn-link" (click)="doLaunchLegalMarker($event)">{{item.CaseNoLabel}}</i><strong>&nbsp;{{item.SearchScoreLabel}}:&nbsp;{{item.RhetClassLabel}}:</strong></span> -->
+        <span  [innerHTML]="item.innerHTML"></span>
+    </p>
+    <app-sentence [fullSendID]="true" [renderLikePage]="false" [sentence]="item.sentence" [userCanEdit]="true" showSelect="true"></app-sentence>
+
+</div>
+

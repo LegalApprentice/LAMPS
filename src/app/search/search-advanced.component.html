@@ -1,0 +1,61 @@
+<div rowHeight="250px" >
+    <form [formGroup]="searchForm" style="width: 99%">
+        <div class="form-group row">
+            <label for="includeany" class="offset-sm-1 col-sm-2 col-form-label">Any Word:</label>
+            <div class="col-sm-4">
+                <input type="text" formControlName="includeany" class="form-control" id="includeany" placeholder="Search for any of these words" />
+            </div>
+
+            <div class="col-sm-2 FindingSentence">
+                <input type="checkbox" id="FindingSentence" class="col-form-label" formControlName="FindingSentence" />
+                <label for="FindingSentence" style="margin-left: 10px" class="col-form-label"><h5>Finding</h5></label>
+            </div>
+            <!-- <div class="col-sm-2">Tags</div> -->
+        </div>
+        <div class="form-group row">
+            <label for="includeall" class="offset-sm-1 col-sm-2 col-form-label">All Words:</label>
+            <div class="col-sm-4">
+                <input type="text" formControlName="includeall" class="form-control" id="includeall" placeholder="Search for all of these words" />
+            </div>
+
+            <div class="col-sm-2 EvidenceSentence">
+                <input type="checkbox" id="EvidenceSentence" class="col-form-label" formControlName="EvidenceSentence" />
+                <label for="EvidenceSentence" style="margin-left: 10px" class="col-form-label"><h5>Evidence</h5></label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="exactphrase" class="offset-sm-1 col-sm-2 col-form-label">Exact Phrase:</label>
+            <div class="col-sm-4">
+                <input type="text" formControlName="exactphrase" class="form-control" id="exactphrase" placeholder="Search for this exact phrase" />
+            </div>
+
+            <div class="col-sm-2 LegalRuleSentence">
+                <input type="checkbox" id="LegalRuleSentence" class="col-form-label" formControlName="LegalRuleSentence" />
+                <label for="LegalRuleSentence" style="margin-left: 10px" class="col-form-label"><h5>Legal Rule</h5></label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="excludeany" class="offset-sm-1 col-sm-2 col-form-label">Exclude Words:</label>
+            <div class="col-sm-4">
+                <input type="text" formControlName="excludeany" class="form-control" id="excludeany" placeholder="Exclude results containing any of these words" />
+            </div>
+
+            <div class="col-sm-2 ReasoningSentence">
+                <input type="checkbox" id="ReasoningSentence" class="col-form-label" formControlName="ReasoningSentence" />
+                <label for="ReasoningSentence" style="margin-left: 10px" class="col-form-label"><h5>Reasoning</h5></label>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="offset-sm-1 col-sm-1">
+                <button class="btn btn-info" (click)="doSearch()">Search</button>
+            </div>
+            <div class="col-sm-1">
+              <button class="btn btn-success" (click)="doClear()">Clear</button>
+          </div>
+            <div class="offset-sm-4 col-sm-2 CitationSentence">
+                <input type="checkbox" id="CitationSentence" class="col-form-label" formControlName="CitationSentence" />
+                <label for="CitationSentence" style="margin-left: 10px" class="col-form-label "><h5>Citation</h5></label>
+            </div>
+        </div>
+    </form>
+</div>

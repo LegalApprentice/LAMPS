@@ -1,0 +1,13 @@
+<b>{{ footnote.footnoteID }}&nbsp; &nbsp; </b>
+
+<span *ngFor="let item of getSectionBadges()">
+    <button  class="badge rounded-pill bg-info text-dark" style="background-color: darkkhaki; margin-left: 5px; margin-right: 10px">{{ item }}</button>
+</span>
+
+<app-sentence 
+*ngFor="let item of getFilteredSentences()" 
+[userCanAddNotesAndTags]="true"
+[renderLikePage]="true" 
+[sentence]="item" 
+[userCanEdit]="true">
+</app-sentence>

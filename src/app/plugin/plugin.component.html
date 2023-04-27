@@ -1,0 +1,41 @@
+<div class="sticky-button-bar">
+    <p style="text-align: center; background-color: rgb(132, 132, 245); max-height: 40px">
+        <strong> PLUGINS: {{ banner }} ({{plugins.length}})</strong>
+    </p>
+    <div class="navbar navbar-expand-md sticky-button-bar">
+
+    </div>
+</div>
+
+<div class="container text-container">
+    <table class="table table-striped table-bordered" >
+        <thead>
+            <tr>
+                <th scope="col1">Guid</th>
+                <th scope="col1">Time</th>
+                <th scope="col1">Name</th>
+                <th scope="col1">Type</th>
+                <th scope="col1">Active</th>
+                <th scope="col1">Description</th>
+                <th scope="col1">Extra</th>
+                <th scope="col1">Command</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let plugin of plugins">
+                <td>{{ plugin.sourceGuid | shortguid}}</td>
+                <td>{{ plugin.timeStamp | lastupdate}}</td>
+                <td>{{ plugin.name }}</td>
+                <td>{{ plugin.type }}</td>
+                <td>{{ plugin.active }}</td>
+                <td>{{ plugin.description }}</td>
+                <td>{{ plugin.extra }}</td>
+                <td><button class="btn btn-success" (click)="doStart(plugin)">Start</button></td>
+
+             </tr>
+        </tbody>
+    </table>
+
+</div>
+<br/>
+<br/>

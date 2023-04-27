@@ -1,0 +1,5 @@
+<div *ngIf="context"  style="background-color: white">
+    <app-sentence *ngIf="isSentence()" [sentence]="context" [renderLikePage]="false" [fullSendID]="true"> </app-sentence>
+    <app-paragraph *ngIf="isParagraph()" [paragraph]="context"> </app-paragraph>
+</div>
+

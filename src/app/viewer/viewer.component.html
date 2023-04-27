@@ -1,0 +1,23 @@
+<div class="sticky-button-bar">
+    <p style="text-align: center; background-color: coral; max-height: 40px">
+        <strong> READONLY: {{ banner }} </strong>
+    </p>
+    <div class="navbar navbar-expand-md sticky-button-bar">
+        <div class="container menu-container" style="max-width: 90%" >
+            <button (click)="applyFilter($event,item)"  [class]="item.name" *ngFor="let item of getSentenceLaStats">{{ item.markerLabel() }}&nbsp; &nbsp;</button>
+        </div>
+    </div>
+</div>
+
+<div class="container text-container">
+    <app-case-title *ngIf="isModelOpen" [caseInfo]="getModelCoreInfo()"></app-case-title>
+    <div *ngIf="HasNoSentenceFilter()">
+        <app-paragraph *ngFor="let item of getParagraphs()" [userCanEdit]="userCanEdit"  [paragraph]="item"> </app-paragraph>
+    </div>
+    <div *ngIf="!HasNoSentenceFilter()">
+        <app-sentence *ngFor="let item of getFilteredSentences()" [userCanEdit]="userCanEdit" [filter]="filter" [sentence]="item" [renderLikePage]="false"> </app-sentence>
+    </div>
+
+</div>
+<br/>
+<br/>

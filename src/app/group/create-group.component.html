@@ -1,0 +1,36 @@
+<div class="container" >
+    <div rowHeight="300px">
+        <form [formGroup]="createGroupForm" (ngSubmit)="onSubmit()" style="width: 99%">
+            <div class="form-group row">
+                <label for="title" class="col-sm-1 col-form-label">Title:</label>
+                <div class="col-sm-7">
+                    <input type="text" formControlName="title" class="form-control" id="title" placeholder="title for the new group" />
+                </div>
+                <label for="groupIDs" class="col-sm-1 col-form-label">GroupID:</label>
+                <div class="col-sm-3">
+                    <input type="text" formControlName="groupIDs" class="form-control" id="groupIDs" placeholder="groupIDs" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="description" class="col-sm-1 col-form-label">Description:</label>
+                <div class="col-sm-11">
+                    <input type="text" formControlName="description" class="form-control" id="description" placeholder="description for the new group" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="category" class="col-sm-1 col-form-label">Category:</label>
+                <div class="col-sm-7">
+                    <input type="text" formControlName="category" class="form-control" id="category" placeholder="category of the new group" />
+                </div>
+                <div class="offset-sm-1 col-sm-1">
+                    <button (click)="doCancel()" class="btn btn-danger">Cancel</button>
+                </div>
+                <div class="offset-sm-1 col-sm-1">
+                    <button (click)="doCreate()" class="btn btn-success">Create</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    </div>

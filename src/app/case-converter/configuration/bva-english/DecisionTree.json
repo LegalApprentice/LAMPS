@@ -1,0 +1,116 @@
+{
+    "ruleID": "SC_1",
+    "label": "The veteran has a disability that is service-connected.",
+    "nodes": [
+        {
+            "ruleID": "SC_1.1",
+            "label": "The veteran has a present disability.",
+            "operation": "AND",
+            "nodes": [
+                {
+                    "ruleID": "SC_1.1.1",
+                    "label": "The veteran’s claim is for PTSD, and the veteran presently has a diagnosis of PTSD supported by medical evidence diagnosing the condition in accordance with 38 C.F.R. § 4.125(a).",
+                    "operation": "IMP"
+                }
+            ]
+        },
+        {
+            "ruleID": "SC_1.2",
+            "label": "The veteran suffered an in-service incurrence or aggravation of a disease or injury in line of duty.",
+            "operation": "AND",
+            "nodes": [
+                {
+                    "ruleID": "SC_1.2.1",
+                    "label": "The veteran suffered an in-service incurrence of a disease or injury.",
+                    "operation": "OR",
+                    "nodes": [
+                        {
+                            "ruleID": "SC_1.2.1.1",
+                            "label": "The veteran suffered an injury or contracted a disease during active military service.",
+                            "operation": "AND",
+                            "nodes": [
+                                {
+                                    "ruleID": "SC_1.2.1.1.1",
+                                    "label": "The veteran’s claim is for PTSD, and there is credible supporting evidence that the claimed in-service stressor occurred.",
+                                    "operation": "OR"
+                                },
+                                {
+                                    "ruleID": "SC_1.2.1.1.2",
+                                    "label": "There is adequate evidence that the veteran suffered from the claimed disease or injury while in service.",
+                                    "operation": "OR"
+                                }
+                            ]
+                        },
+                        {
+                            "ruleID": "SC_1.2.1.2",
+                            "label": "The injury or disease did not preexist entry into service.",
+                            "operation": "AND",
+                            "nodes": [
+                                {
+                                    "ruleID": "SC_1.2.1.2.1",
+                                    "label": "The veteran is presumed to have been in sound condition when examined, accepted, and enrolled for service (the presumption of sound condition or presumption of soundness).",
+                                    "operation": "IMP",
+                                    "nodes": [
+                                        {
+                                            "ruleID": "SC_1.2.1.2.1.1",
+                                            "label": "The veteran served in the active military, naval, or air service, during a period of war or after December 31, 1946, and clear and unmistakable evidence demonstrates that the injury or disease existed before acceptance and enrollment and was not aggravated by such service.",
+                                            "operation": "REBUT"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ruleID": "SC_1.2.2",
+                    "label": "The veteran suffered an in-service aggravation of a disease or injury.",
+                    "operation": "OR",
+                    "nodes": [
+                        {
+                            "ruleID": "SC_1.2.2.1",
+                            "label": "The injury or disease preexisted entry into service.",
+                            "operation": "AND"
+                        },
+                        {
+                            "ruleID": "SC_1.2.2.2",
+                            "label": "There was an aggravation during service.",
+                            "operation": "AND",
+                            "nodes": [
+                                {
+                                    "ruleID": "SC_1.2.2.2.1",
+                                    "label": "The presumption of aggravation has been satisfied.",
+                                    "operation": "IMP",
+                                    "nodes": [
+                                        {
+                                            "ruleID": "SC_1.2.2.2.1.1",
+                                            "label": "Based on clear and unmistakable evidence (obvious or manifest) that is undebatable, there is a specific finding that the increase in disability is due to the natural progress of the disease.",
+                                            "operation": "REBUT"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ruleID": "SC_1.2.3",
+                    "label": "The disability is a result of the veteran’s own willful misconduct or abuse of alcohol or drugs.",
+                    "operation": "REBUT"
+                }
+            ]
+        },
+        {
+            "ruleID": "SC_1.3",
+            "label": "There is a causal relationship [nexus] between the present disability and the injury, disease, or aggravation of a preexisting injury or disease incurred during active duty.",
+            "operation": "AND",
+            "nodes": [
+                {
+                    "ruleID": "SC_1.3.1",
+                    "label": "The veteran’s claim is for PTSD, and there is a link, established by medical evidence, between current symptoms and an in-service stressor.",
+                    "operation": "IMP"
+                }
+            ]
+        }
+    ]
+}

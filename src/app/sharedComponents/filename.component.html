@@ -1,0 +1,38 @@
+<div class="container" style="max-width: 40%; background-color: antiquewhite">
+    <br />
+    <div rowHeight="300px">
+
+            <h3 style="padding-left: 20%;" >Rename / Save Current Document</h3>
+
+        <form [formGroup]="filenameInfoForm" (ngSubmit)="onSubmit()" style="width: 99%">
+            <div class="form-group row">
+                <label for="pre" class="col-sm-1 col-form-label">Prefix:</label>
+                <div class="col-sm-11">
+                    <input type="text" formControlName="pre" class="form-control" id="pre" placeholder="filename prefix (case, note, search)" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="name" class="col-sm-1 col-form-label">Name:</label>
+                <div class="col-sm-11">
+                    <input type="text" formControlName="name" class="form-control" id="name" placeholder="unique name of the file" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="version" class="col-sm-1 col-form-label">Version:</label>
+                <div class="col-sm-11">
+                    <input type="text" formControlName="version" class="form-control" id="version" placeholder="version number (4 digits)" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="offset-sm-8 col-sm-1">
+                    <button class="btn btn-danger" (click)="doCancel()">Cancel</button>
+                </div>
+                <div class="offset-sm-1 col-sm-1">
+                    <button class="btn btn-success" (click)="doSave()">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br />
+</div>

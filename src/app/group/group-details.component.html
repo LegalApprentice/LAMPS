@@ -1,0 +1,30 @@
+<div class="container" style="max-width: 100%">
+    <div>
+        <h3>
+            <strong>{{ group.title }} ({{group.memberCount()}})</strong> 
+            {{group.category}}                                
+            <button  class="badge rounded-pill bg-info text-dark  grouping-tag"  >{{group.groupIDs}}</button>
+        </h3>
+        <h4>{{ group.description }}</h4>
+        <mat-icon *ngIf="!hasNotes() && canAddNotes()" (click)="doAddNote($event)" class="btn" style="padding-top: 0px; margin-right: 10px">note_add</mat-icon>
+        <mat-icon *ngIf="hasNotes()" (click)="doOpenNote($event)" class="btn" style="padding-top: 0px; margin-right: 10px" tooltip="{{ group.notes }}">feedback</mat-icon>
+
+        <mat-icon *ngIf="!hasTags() && canAddTags()" (click)="doAddTags($event)" class="btn" style="padding-top: 0px; margin-right: 10px">local_offer</mat-icon>
+        <mat-icon *ngIf="hasTags()" (click)="doOpenTags($event)" class="btn" style="padding-top: 0px; margin-right: 10px" tooltip="{{ tagToolTips() }}">more</mat-icon>
+
+        <app-note *ngIf="showNotes" [context]="group"></app-note>
+        <app-tags *ngIf="showTags" [context]="group"></app-tags>
+    </div>
+
+    <div *ngFor="let ref of group.getMembers()">
+        <app-strong-reference [reference]="ref"></app-strong-reference>
+
+        <p>
+            <app-paragraph *ngIf="isParagraph(ref)" [showImmutable]="false" [userCanEdit]="false" [paragraph]="resolveStrongReference(ref)"> </app-paragraph>
+            <app-sentence *ngIf="isSentence(ref)" [showImmutable]="false" [userCanEdit]="false" [renderLikePage]="true" [sentence]="resolveStrongReference(ref)"></app-sentence>
+        </p>
+
+    </div>
+
+    <br />
+</div>

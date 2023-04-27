@@ -1,0 +1,39 @@
+<mat-expansion-panel [expanded]="expanded">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h5>TEAM: {{ team.teamName }}</h5>
+      </mat-panel-title>
+      <mat-panel-description>
+        <h5> workspace: {{ team.workspace }}</h5>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <div  *ngIf="userCanEdit">
+      <div *ngFor="let member of team.members">
+        <app-team-member [team]="team" [member]="member"></app-team-member>
+      </div>
+    </div>
+
+    <div  *ngIf="!userCanEdit">
+      <div *ngFor="let user of userList">
+        <app-team-member-display  [user]="user"></app-team-member-display>
+      </div>
+    </div>
+
+    <app-create-team-member *ngIf="userCanEdit" [team]="team"></app-create-team-member>
+  
+    <mat-action-row *ngIf="leaderDetails || team.godMode">
+      <h5 class="col-5">{{ leaderDetails?.fullName() }}</h5>    
+        <h5 class="col-5">{{ team.pattern }}</h5>
+        <div class="col-auto " *ngIf="confirmDelete">
+          <button (click)="doConfirmDeleteTeam()" class="btn btn-success">Confirm</button>
+        </div>
+        <div class="col-auto " *ngIf="userCanEdit">
+          <button (click)="doDeleteTeam()" class="btn btn-danger">{{deleteText()}}</button>
+        </div> 
+      </mat-action-row>
+
+  </mat-expansion-panel>
+  <br/>
+  
+

@@ -1,0 +1,51 @@
+<div class="sticky-button-bar">
+    <!-- <p style="text-align: center; background-color: rgb(165, 255, 80); max-height: 40px">
+        <strong> NOTES & TAGS {{ banner }} </strong>
+    </p> -->
+
+    <div class="navbar navbar-expand-md sticky-button-bar">
+        <div class="container menu-container" style="max-width: 90%">
+            <button (click)="applyFilter($event, item)" [class]="item.name" *ngFor="let item of getSentenceLaStats">{{ item.markerLabel() }}&nbsp; &nbsp;</button>
+        </div>
+    </div>
+    <div class="navbar navbar-expand-md sticky-button-menu">
+        <div class="container menu-container" style="text-align: center; max-width: 90%; border-style: solid; border-width: medium">
+            <div class="btn-toolbar" role="toolbar" *ngIf="isModelOpen">
+                <div class="btn-group mr-10" role="group">
+                    <span style="padding-right:100px;">CASE MARKER</span>
+                    <button tooltip="show / hide color " (click)="doToggleColors()" type="button" class="btn btn-badge">color<mat-icon>brush</mat-icon></button>
+                    <button tooltip="add notes to items" (click)="doToggleNotes()" type="button" class="btn btn-badge">add notes<mat-icon>note_add</mat-icon></button>
+                    <button tooltip="add tags to items" (click)="doToggleTags()" type="button" class="btn btn-badge">add tags<mat-icon>local_offer</mat-icon></button>
+                    <button tooltip="label / reclassify each sentence" (click)="doToggleLabel()" type="button" class="btn btn-badge">label<mat-icon>create</mat-icon></button>
+                    <button tooltip="goto previous bookmark" (click)="doGoToPreviousBookmark()" type="button" class="btn btn-badge">previous <mat-icon>bookmark</mat-icon></button>
+                    <button tooltip="goto next bookmark" (click)="doGoToNextBookmark()" type="button" class="btn btn-badge">next <mat-icon>bookmark</mat-icon></button>
+                    <button tooltip="clear all bookmarks" (click)="doClearBookmarks()" type="button" class="btn btn-badge">clear <mat-icon>bookmark_border</mat-icon></button>
+                    <button tooltip="select a sentence" (click)="doToggleSentenceSelection()" type="button" class="btn btn-badge">select sentence <mat-icon>view_headline</mat-icon></button>
+                    <button tooltip="show / assign sections" (click)="doToggleSectionEdit()" type="button" class="btn btn-badge">sections <mat-icon>view_agenda</mat-icon></button>
+                    <button tooltip="label / reclassify each sentence" (click)="doAutomaticLabel()" type="button" class="btn btn-badge">auto label <mat-icon>border_color</mat-icon></button>
+               </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container text-container">
+        <app-case-title *ngIf="isModelOpen" [caseInfo]="getModelCoreInfo()"></app-case-title>
+        <div *ngIf="HasNoSentenceFilter()">
+            <app-paragraph *ngFor="let item of getParagraphs()" [hideFootnotes]="true" [userCanAddNotesAndTags]="true" [userCanEdit]="userCanEdit" [paragraph]="item">
+            </app-paragraph>
+        </div>
+        <div *ngIf="!HasNoSentenceFilter()">
+            <app-sentence
+                *ngFor="let item of getFilteredSentences()"
+                [userCanAddNotesAndTags]="true"
+                [userCanEdit]="userCanEdit"
+                [filter]="filter"
+                [sentence]="item"
+                [renderLikePage]="false"
+            >
+            </app-sentence>
+        </div>
+    </div>
+    <br />
+    <br />
+</div>
