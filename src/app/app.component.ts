@@ -258,7 +258,7 @@ export class AppComponent implements OnInit {
       .existIf(() => this.isMarker);
     MainMenu.addCommand({ name: 'editor' })
       .toolDetails(() => 'sentence classification and evaluation')
-      .existIf(() => this.isMarker && this.tagService.isPowerUser);
+      .existIf(() => this.isMarker);  //  && this.tagService.isPowerUser);
     MainMenu.addCommand({ name: 'paragraphs' })
       .toolDetails(() => 'paragraphs of this case scored as arguments')
       .existIf(() => this.isMarker).divider(true)

@@ -132,14 +132,14 @@ export class LaLegalModel extends LaAtom {
       name: this.caseNumber,
       extension: '.json',
       version: '0000',
-      owner: 'vern.r.walker@hofstra.edu',
+      owner: '',
       source: props?.source ? props?.source : '',
       keywords: '',
       metadata: {},
       lastChange: this.getDateTime()
     };
     this.modelCoreInfo = new LaCaseCoreInfo({ ...data, ...props });
-    if (Tools.matches(this.modelCoreInfo.source, this.modelCoreInfo.owner) ) {
+    if (Tools.matches(this.modelCoreInfo.source, this.modelCoreInfo.owner)) {
       this.modelCoreInfo.owner = '';
     }
     return this.modelCoreInfo;
