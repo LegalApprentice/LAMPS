@@ -525,7 +525,12 @@ export class AppComponent implements OnInit {
         { path: '', component: MarkerComponent },
         { path: '**', redirectTo: 'viewer' }
       ]);
-      this.router.navigate(['/viewer']);
+
+      if (this.cService.defaultModelRefId) {
+        this.router.navigate([`/case/${this.cService.defaultModelRefId}`]);
+      } else {
+        this.router.navigate(['/viewer']);
+      }
     }
   }
 
