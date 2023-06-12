@@ -1,4 +1,4 @@
-import { LaAtom } from '../shared';
+import { EmitterService, LaAtom, Toast } from '../shared';
 import { LaSentence } from './la-sentence';
 import { environment } from '../../environments/environment';
 
@@ -53,14 +53,21 @@ export class LaSearchResult extends LaFindResult {
         return this.sentence.caseNumber;
     }
 
-    CaseLink() {
-      //https://localhost:44360/legalmarker/#/case/case1800023
-      const protocol = window.location.protocol;
-      const hostname = window.location.hostname;
-      const port = window.location.port;
-      var url = `${protocol}//${hostname}:${port}/legalmarker/#/case/${this.caseNumber}`
-      //var url = `${environment.launchMarkerEndpoint}`
-      return url;
+    doDownloadCase()
+    {
+      EmitterService.broadcastCommand(this, 'SaveCaseFromSearch', this.caseNumber);
     }
+
+    // CaseLink() {
+    //   //https://localhost:44360/legalmarker/#/case/case1800023
+    //   const protocol = window.location.protocol;
+    //   const hostname = window.location.hostname;
+    //   const port = window.location.port;
+    //   var url = `${protocol}//${hostname}:${port}/legalmarker/#/case/${this.caseNumber}`
+    //   //var url = `${environment.launchMarkerEndpoint}`
+    //   return url;
+    // }
+
+
 
 }
