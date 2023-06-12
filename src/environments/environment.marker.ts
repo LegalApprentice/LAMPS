@@ -20,7 +20,7 @@ export const environment = {
   localDebug: false,
   localLogin: true,
   production: true,
-  version: '8.2.0',
+  version: '8.2.1',
 
   isLegalMarker: true,
   isLegalPad: false,

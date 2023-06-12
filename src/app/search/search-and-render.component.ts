@@ -45,7 +45,7 @@ export class SearchAndRenderComponent implements OnInit, OnDestroy {
   }
 
   saveCaseFromSearch(caseID: string) {
-    Toast.info(`caseID  ${caseID}`, 'loading from Search...')
+    Toast.info(`caseID  ${caseID}`, 'Downloading from Search...')
     this.sService.findCase$(caseID).subscribe(data => {
       const result = data[0];
       if (result) {
@@ -54,8 +54,8 @@ export class SearchAndRenderComponent implements OnInit, OnDestroy {
         const model = caseModel.asUploadedCase(null, null);
         const blob = new Blob([model.data], { type: 'text/plain;charset=utf-8' });
         saveAs(blob, caseModel.filename);
-
-        EmitterService.broadcastCommand(this, 'Saved from Search...', caseModel.filename);
+        Toast.success(`filename  ${caseModel.filename}`, 'Saved from Search...')
+        //EmitterService.broadcastCommand(this, 'Saved from Search...', caseModel.filename);
       } else {
         Toast.warning(`caseID ${caseID} not found in search`)
       }
