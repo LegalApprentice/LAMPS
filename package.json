@@ -1,6 +1,6 @@
 {
     "name": "lamps",
-    "version": "8.1.5",
+    "version": "8.2.1",
     "scripts": {
         "ng": "ng",
         "start": "ng serve -o",
