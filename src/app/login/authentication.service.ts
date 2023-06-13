@@ -24,9 +24,11 @@ export class AuthenticationService {
 
 
   constructor(private http: HttpClient) {
-    const storedUser = JSON.parse(localStorage.getItem(CURRENTUSER));
-    const user = storedUser ? new LaUser(storedUser) : null;
-    this.currentUserSubject = new BehaviorSubject<LaUser>(user);
+    try {
+      const storedUser = JSON.parse(localStorage.getItem(CURRENTUSER));
+      const user = storedUser ? new LaUser(storedUser) : null;
+      this.currentUserSubject = new BehaviorSubject<LaUser>(user);
+    } catch (ex) { }
   }
 
   public get currentUserValue(): LaUser {

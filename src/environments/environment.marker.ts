@@ -6,7 +6,7 @@ export const environment = {
   launchSearchEndpoint: '',
   hubURL: '',
 
-  baseURL: 'https://localhost:44360',
+  baseURL: '',
   baseURLAPI: '',
 
   searchURL: '',
@@ -20,7 +20,7 @@ export const environment = {
   localDebug: false,
   localLogin: true,
   production: true,
-  version: '8.1.3',
+  version: '8.2.1',
 
   isLegalMarker: true,
   isLegalPad: false,
