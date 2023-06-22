@@ -9,8 +9,8 @@ EXPOSE 9300
 # az acr login --name iobtassets
 # sudo docker build -t elasticsearch -f elasticsearch.Dockerfile .
 # sudo docker run -it --rm -p 9200:9200 --name elasticsearch elasticsearch
-# docker tag elasticsearch iobtassets.azurecr.io/elasticsearch:v1.1.0
-# docker push iobtassets.azurecr.io/elasticsearch:v1.1.0
+# docker tag elasticsearch assets.azurecr.io/elasticsearch:v1.1.0
+# docker push assets.azurecr.io/elasticsearch:v1.1.0
 # docker exec -it elasticsearch bash
 
 

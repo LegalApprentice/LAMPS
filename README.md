@@ -52,22 +52,7 @@ to build Legal Marker follow these steps -
 
 at the command line type:
 
-npm run build:bva
-
-### Build Legal Pad
-to build Legal pad follow these steps - 
-
-at the command line type:
-
-npm run build:pad
-
-
-### Build Legal Search
-to build Legal Search follow these steps - 
-
-at the command line type:
-
-npm run build:search
+npm run build:all
 
 
 
@@ -75,28 +60,3 @@ npm run build:search
 The build artifacts will be stored in the `dist/` directory.  The files in this directory must be `served up` or loaded into the web browser.  these commands will launch the applications.
 
 
-npm run run:bva
-npm run run:pad
-npm run run:search
-
-
-
-testing 
-https://localhost:5001/legalsearch/#case/1800023
-
-http://localhost:4200/case1800023
-
-case/1800023
-
-https://localhost:44360/marker/case1800023
-
-/legalmarker/index.html#/marker/case1800023
-
-http://localhost:4200/#/marker/case1800023
-
-/case/case1800023
-
-
-CREATE THIS!!!
-
-"http://localhost:4200/#/marker/case1800023",

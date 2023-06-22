@@ -20,9 +20,3 @@ EXPOSE 443
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "LoginService.dll"]
 
-# az login
-# az acr login --name lacontainers
-# docker build -t bvaserver -f Dockerfile  .
-# docker tag bvaserver lacontainers.azurecr.io/bvaserver:v8.0.0
-# docker push lacontainers.azurecr.io/bvaserver:v8.0.0
-# docker run -d --network squire -p 8000:80 -v /iobt:/app/iobt  --rm --name bvaserver bvaserver 
